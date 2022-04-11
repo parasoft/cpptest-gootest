@@ -111,38 +111,34 @@ function (cpptest_enable_coverage)
   # 
   add_custom_target(coverage-compute
     COMMAND
-    mkdir -p "${CPPTEST_SOURCE_DIR}/.coverage/lastrun"
+    mkdir -p "${CPPTEST_SOURCE_DIR}/.coverage"
     &&
     ${CPPTEST_HOME_DIR}/bin/coverage-compute
         -map="${CPPTEST_COVERAGE_WORKSPACE}/.cpptest/cpptestcc"
         -clog="${CPPTEST_COVERAGE_LOG_FILE}"
-        -out="${CPPTEST_SOURCE_DIR}/.coverage/lastrun"
+        -out="${CPPTEST_SOURCE_DIR}/.coverage"
   )
   #
   add_custom_target(coverage-suppress
     COMMAND
     ${CPPTEST_HOME_DIR}/bin/coverage-suppress.py
-        "${CPPTEST_SOURCE_DIR}/.coverage/lastrun"
+        "${CPPTEST_SOURCE_DIR}/.coverage"
   )
   #
   add_custom_target(coverage-report
     COMMAND
-    ${CPPTEST_HOME_DIR}/bin/coverage-report-lcov.py
-        "${CPPTEST_SOURCE_DIR}/.coverage/lastrun" >
-        "${CPPTEST_SOURCE_DIR}/.coverage/coverage.lcov"
-    &&
     ${CPPTEST_HOME_DIR}/bin/coverage-report-stats-md.py
-        "${CPPTEST_SOURCE_DIR}/.coverage/lastrun" >
+        "${CPPTEST_SOURCE_DIR}/.coverage" >
         "${CPPTEST_SOURCE_DIR}/.coverage/coverage.md"
     &&
     ${CPPTEST_HOME_DIR}/bin/coverage-report-stats-txt.py
-        "${CPPTEST_SOURCE_DIR}/.coverage/lastrun"
+        "${CPPTEST_SOURCE_DIR}/.coverage"
     &&
     ${CPPTEST_HOME_DIR}/bin/coverage-report-suppressed-lines.py
-        "${CPPTEST_SOURCE_DIR}/.coverage/lastrun"
+        "${CPPTEST_SOURCE_DIR}/.coverage"
     &&
     ${CPPTEST_HOME_DIR}/bin/coverage-report-mcdc-table.py
-        "${CPPTEST_SOURCE_DIR}/.coverage/lastrun"
+        "${CPPTEST_SOURCE_DIR}/.coverage"
   )
 
 endfunction()
