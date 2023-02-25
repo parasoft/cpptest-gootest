@@ -1,0 +1,26 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Configure",
+            "type": "shell",
+            "command": "cmake -DCPPTEST_COVERAGE=ON -S . -B .build",
+            "group": "build"
+        },
+        {
+            "label": "Build and Run",
+            "type": "shell",
+            "command": "bash -c 'cmake --build .build && cd .build && rm -rf cpptest-coverage/GooTest/GooTest.clog && ctest || true && make coverage-compute coverage-suppress coverage-report'",
+            "group": "build"
+        },
+        {
+            "label": "Update Coverage",
+            "type": "shell",
+            "command": "bash -c 'cd .build;make coverage-suppress coverage-report'",
+            "group": "build"
+        }
+
+    ]
+}
