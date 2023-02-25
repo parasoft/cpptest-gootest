@@ -12,6 +12,6 @@ int getValue(int a, int b)
         return b;
     }
 
-    return 0; // parasoft-cov-suppress "This is a legacy code - accepted as not covered."
+    return 0;
 }
 
