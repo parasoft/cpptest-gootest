@@ -1,6 +1,6 @@
 
-# This is a basic workflow to help you get started with the Run C/C++test action for a CMake-based project.
-name: C/C++test with CMake
+# This is a basic workflow to help you get started with the C/C++test Coverage for a CMake-based project.
+name: Build and test
 
 on:
   # Triggers the workflow on push or pull request events but only for the master (main) branch.
@@ -14,8 +14,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel.
 jobs:
-  run-cpptest-cmake:
-    name: Analyze project with C/C++test
+  build-test:
+    name: Build and test
 
     # Specifies the type of runner that the job will run on.
     runs-on: self-hosted
