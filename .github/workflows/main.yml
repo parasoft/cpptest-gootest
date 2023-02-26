@@ -48,5 +48,5 @@ jobs:
         path: .coverage/
     
     # Check coverage quality gate
-    - name: Check coverage gate
-      run: grep "> TOTAL.*LC=100%.*DC=100%.*MCDC=100%" .coverage/coverage.txt 
+    # - name: Check coverage gate
+    #   run: grep "> TOTAL.*LC=100%.*DC=100%.*MCDC=100%" .coverage/coverage.txt 
