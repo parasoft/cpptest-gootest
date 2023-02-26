@@ -12,6 +12,6 @@ int getValue(int a, int b)
         return b;
     }
 
-    return 0; // parasoft-cov-suppress "Approve - legacy code"
+    return 0;
 }
 
