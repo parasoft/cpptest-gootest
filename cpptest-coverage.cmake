@@ -117,6 +117,8 @@ function (cpptest_enable_coverage)
   # Compute coverage data files (.json) into ${CPPTEST_SOURCE_DIR}/.coverage
   add_custom_target(cpptestcov-compute
     COMMAND
+    rm -rf "${CPPTEST_SOURCE_DIR}/.coverage"
+    &&
     mkdir -p "${CPPTEST_SOURCE_DIR}/.coverage"
     &&
     ${CPPTEST_HOME_DIR}/bin/cpptestcov compute
