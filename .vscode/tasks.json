@@ -12,13 +12,13 @@
         {
             "label": "Build and Run",
             "type": "shell",
-            "command": "bash -c 'cmake --build .build && cd .build && rm -rf cpptest-coverage/GooTest/GooTest.clog && ctest || true && make coverage-compute coverage-suppress coverage-report'",
+            "command": "bash -c 'cmake --build .build && cd .build && rm -rf cpptest-coverage/GooTest/GooTest.clog && ctest || true && make cpptestcov-compute cpptestcov-suppress cpptestcov-report'",
             "group": "build"
         },
         {
             "label": "Update Coverage",
             "type": "shell",
-            "command": "bash -c 'cd .build;make coverage-suppress coverage-report'",
+            "command": "bash -c 'cd .build;make cpptestcov-suppress cpptestcov-report'",
             "group": "build"
         }
 
