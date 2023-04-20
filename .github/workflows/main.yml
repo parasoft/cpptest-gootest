@@ -37,7 +37,7 @@ jobs:
       
     # Tests your CMake project.
     - name: Test project
-      run: cd build && rm -rf cpptest-coverage/GooTest/GooTest.clog && ctest || true && make coverage-compute coverage-suppress coverage-report
+      run: cd build && rm -rf cpptest-coverage/GooTest/GooTest.clog && ctest || true && make cpptestcov-compute cpptestcov-suppress cpptestcov-report
 
     # Uploads an archive that includes all coverage data files.
     - name: Archive coverage
