@@ -12,6 +12,6 @@ int getValue(int a, int b)
         return b;
     }
 
-    return 0;
+    return 0; // parasoft-cov-suppress "This is a dead-code that will be fixed later"
 }
 
