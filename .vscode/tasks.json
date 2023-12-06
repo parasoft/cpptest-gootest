@@ -12,7 +12,7 @@
         {
             "label": "Build and Run",
             "type": "shell",
-            "command": "bash -c 'cmake --build .build && cd .build && rm -rf cpptest-coverage/GooTest/GooTest.clog && ctest || true && make cpptestcov-compute cpptestcov-suppress cpptestcov-report'",
+            "command": "bash -c 'cmake --build .build && cd .build && rm -rf cpptest-coverage/*/*.clog && ctest || true && make cpptestcov-compute cpptestcov-suppress cpptestcov-report'",
             "group": "build"
         },
         {

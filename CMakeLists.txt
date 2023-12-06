@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(GooTest)
+project(CovGoogleTest)
 
 # GoogleTest requires at least C++11
 set(CMAKE_CXX_STANDARD 11)
@@ -31,4 +31,4 @@ target_link_libraries(
 )
 
 include(GoogleTest)
-gtest_discover_tests(goo_test)
+gtest_discover_tests(goo_test XML_OUTPUT_DIR "${CMAKE_BINARY_DIR}/gtest-report")

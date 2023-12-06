@@ -26,9 +26,9 @@ function (cpptest_enable_coverage)
   # Configure C/C++test compiler identifier
   set(CPPTEST_COMPILER_ID "gcc_10-64")
   # Configure coverage type(s) for instrumentation engine - see 'cpptestcc -help' for details
-  set(CPPTEST_COVERAGE_TYPE_INSTRUMENTATION -line-coverage -decision-coverage -mcdc-coverage)
+  set(CPPTEST_COVERAGE_TYPE_INSTRUMENTATION -line-coverage -statement-coverage -block-coverage -decision-coverage -simple-condition-coverage -mcdc-coverage -function-coverage -call-coverage)
   # Configure coverage type(s) for reporting engine - see 'cpptestcov -help' for details
-  set(CPPTEST_COVERAGE_TYPE_REPORT "LC,DC,MCDC" )
+  set(CPPTEST_COVERAGE_TYPE_REPORT "LC,SC,BC,DC,SCC,MCDC,FC,CC" )
   # Configure C/C++test project name
   set(CPPTEST_PROJECT_NAME ${CMAKE_PROJECT_NAME})
   # Configure coverage workspace folder
@@ -44,7 +44,7 @@ function (cpptest_enable_coverage)
   endif()
   
   if(NOT CPPTEST_HOME_DIR)
-    message(FATAL_ERROR "$CPPTEST_HOME not set" )
+    message(FATAL_ERROR "CPPTEST_HOME not set" )
   endif()
 
   # Build C/C++test coverage runtime library
@@ -117,8 +117,6 @@ function (cpptest_enable_coverage)
   # Compute coverage data files (.json) into ${CPPTEST_SOURCE_DIR}/.coverage
   add_custom_target(cpptestcov-compute
     COMMAND
-    rm -rf "${CPPTEST_SOURCE_DIR}/.coverage"
-    &&
     mkdir -p "${CPPTEST_SOURCE_DIR}/.coverage"
     &&
     ${CPPTEST_HOME_DIR}/bin/cpptestcov compute
@@ -138,22 +136,38 @@ function (cpptest_enable_coverage)
   # - console output
   add_custom_target(cpptestcov-report
     COMMAND
-    ${CPPTEST_HOME_DIR}/bin/cpptestcov report text
-        -coverage=${CPPTEST_COVERAGE_TYPE_REPORT}
-        "${CPPTEST_SOURCE_DIR}/.coverage" >
-        "${CPPTEST_SOURCE_DIR}/.coverage/coverage.txt"
+    date +'build-%m_%d_%y-%H_%M_%S' >
+        "${CPPTEST_BINARY_DIR}/build.id"
     &&
-    ${CPPTEST_HOME_DIR}/bin/cpptestcov report markdown
+    ${CPPTEST_HOME_DIR}/bin/cpptestcov report dtp-summary
         -coverage=${CPPTEST_COVERAGE_TYPE_REPORT}
+        -root ${CPPTEST_SOURCE_DIR}
+        -build `cat "${CPPTEST_BINARY_DIR}/build.id"`
         "${CPPTEST_SOURCE_DIR}/.coverage" >
-        "${CPPTEST_SOURCE_DIR}/.coverage/coverage.md"
+        "${CPPTEST_SOURCE_DIR}/.coverage/dtp-summary.xml"
+    &&
+    ${CPPTEST_HOME_DIR}/bin/cpptestcov report dtp-details
+        -root ${CPPTEST_SOURCE_DIR}
+        -build `cat "${CPPTEST_BINARY_DIR}/build.id"`
+        -scm
+        "${CPPTEST_SOURCE_DIR}/.coverage" >
+        "${CPPTEST_SOURCE_DIR}/.coverage/dtp-details.xml"
+    &&
+    ${CPPTEST_HOME_DIR}/bin/cpptestcov report dtp-gtest
+        -root ${CPPTEST_SOURCE_DIR}
+        -build `cat "${CPPTEST_BINARY_DIR}/build.id"`
+        -scm
+        "${CPPTEST_BINARY_DIR}/gtest-report/*.xml" >
+        "${CPPTEST_SOURCE_DIR}/.coverage/dtp-gtest.xml"
     &&
     ${CPPTEST_HOME_DIR}/bin/cpptestcov report html
+        -root ${CPPTEST_SOURCE_DIR}
         -coverage=${CPPTEST_COVERAGE_TYPE_REPORT}
         "${CPPTEST_SOURCE_DIR}/.coverage" >
         "${CPPTEST_SOURCE_DIR}/.coverage/coverage.html"
     &&
     ${CPPTEST_HOME_DIR}/bin/cpptestcov report text
+        -root ${CPPTEST_SOURCE_DIR}
         -coverage=${CPPTEST_COVERAGE_TYPE_REPORT}
         "${CPPTEST_SOURCE_DIR}/.coverage"
     &&

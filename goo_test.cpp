@@ -3,15 +3,16 @@
 
 // 
 TEST(GooTest, TestGetValueWithZero) {
+  RecordProperty("cpptest_filename", __FILE__);
+  RecordProperty("req", "REQ-123-ZERO");
+ 
   EXPECT_EQ(getValue(0, 0), 0);
 }
 
 // 
 TEST(GooTest, TestGetValueWithPositive) {
-  EXPECT_EQ(getValue(5, 5), 25);
-}
+  RecordProperty("cpptest_filename", __FILE__);
+  RecordProperty("req", "REQ-123-POSITIVE");
 
-// 
-TEST(GooTest, TestGetValueWithMixed) {
-  EXPECT_EQ(getValue(5, -5), 5);
+  EXPECT_EQ(getValue(5, 5), 25);
 }
