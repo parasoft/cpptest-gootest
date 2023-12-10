@@ -192,7 +192,6 @@ function (cpptest_enable_coverage)
   add_custom_target(cpptestcov-publish
     COMMAND
     ${CPPTEST_HOME_DIR}/bin/cpptestcov publish
-        -settings "${CPPTEST_SOURCE_DIR}/cpptestcov.properties"
         "${CPPTEST_SOURCE_DIR}/reports/*.xml"
   )
 
