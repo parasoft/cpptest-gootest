@@ -20,6 +20,12 @@
             "type": "shell",
             "command": "bash -c 'cd .build;make cpptestcov-suppress cpptestcov-report'",
             "group": "build"
+        },
+        {
+            "label": "Publish Reports",
+            "type": "shell",
+            "command": "bash -c 'cd .build;make cpptestcov-publish'",
+            "group": "build"
         }
 
     ]

@@ -188,6 +188,14 @@ function (cpptest_enable_coverage)
         "${CPPTEST_SOURCE_DIR}/.coverage"
   )
 
+  # Publish results to Parasoft DTP
+  add_custom_target(cpptestcov-publish
+    COMMAND
+    ${CPPTEST_HOME_DIR}/bin/cpptestcov publish
+        -settings "${CPPTEST_SOURCE_DIR}/cpptestcov.properties"
+        "${CPPTEST_SOURCE_DIR}/reports/*.xml"
+  )
+
 endfunction()
 
 if(CPPTEST_COVERAGE)
