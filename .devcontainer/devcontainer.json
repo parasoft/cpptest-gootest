@@ -1,4 +1,9 @@
 {
     "image": "cpptest-coverage:latest",
-    "runArgs": [ "--rm" ]
+    "runArgs": [ "--rm" ],
+    "customizations": {
+        "vscode": {
+            "extensions": ["matepek.vscode-catch2-test-adapter"]
+        }
+    }
 }
