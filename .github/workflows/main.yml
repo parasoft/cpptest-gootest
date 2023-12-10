@@ -45,7 +45,7 @@ jobs:
 
     # Tests your CMake project.
     - name: Test project
-      run: cd build && rm -rf cpptest-coverage/*/*.clog && ctest || true && make cpptestcov-compute cpptestcov-suppress cpptestcov-report
+      run: cd build && rm -rf cpptest-coverage/*/*.clog && ctest || true && make cpptestcov-compute cpptestcov-suppress cpptestcov-report cpptestcov-publish
 
     - name: Archive reports
       if: always()
