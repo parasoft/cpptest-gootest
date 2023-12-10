@@ -70,5 +70,5 @@ jobs:
 
     - name: Print Report URL
       env:
-          REPORT_URL: ${{ steps.deployment.outputs.page_url }}
-      run: echo "Coverage report: $REPORT_URL"
+        REPORT_URL: ${{ steps.deployment.outputs.page_url }}
+      run: echo "Coverage report $REPORT_URL"
