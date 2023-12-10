@@ -67,3 +67,8 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v2
+
+    - name: Print Report URL
+      env:
+          REPORT_URL: ${{ steps.deployment.outputs.page_url }}
+      run: echo "Coverage report: $REPORT_URL"
