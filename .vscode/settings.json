@@ -1,0 +1,15 @@
+{
+    "testMate.cpp.test.advancedExecutables": [
+        {
+            "pattern": "{.build,build,Build,BUILD,out,Out,OUT}/**/*{test,Test,TEST}*",
+            "cwd": "${absDirpath}",
+            "env": {
+                "GTEST_OUTPUT": "xml:${absDirpath}/gtest-report/gtest.xml"
+            },
+            "runTask": {
+                "before": [ "Build Only" ],
+                "after": [ "Compute Coverage" ]
+            }
+        }
+    ]
+}
