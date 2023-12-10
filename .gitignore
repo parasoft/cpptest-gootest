@@ -1,2 +1,5 @@
 .build/
 .coverage/
+.cpptest/
+reports/
+cpptestcov.properties

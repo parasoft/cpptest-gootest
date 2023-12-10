@@ -4,7 +4,7 @@
 // 
 TEST(GooTest, TestGetValueWithZero) {
   RecordProperty("cpptest_filename", __FILE__);
-  RecordProperty("req", "REQ-123-ZERO");
+  RecordProperty("req", "CIC-4");
  
   EXPECT_EQ(getValue(0, 0), 0);
 }
@@ -12,7 +12,7 @@ TEST(GooTest, TestGetValueWithZero) {
 // 
 TEST(GooTest, TestGetValueWithPositive) {
   RecordProperty("cpptest_filename", __FILE__);
-  RecordProperty("req", "REQ-123-POSITIVE");
+  RecordProperty("req", "CIC-5");
 
   EXPECT_EQ(getValue(5, 5), 25);
 }
