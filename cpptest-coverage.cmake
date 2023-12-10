@@ -170,7 +170,7 @@ function (cpptest_enable_coverage)
         -root ${CPPTEST_SOURCE_DIR}
         -coverage=${CPPTEST_COVERAGE_TYPE_REPORT}
         "${CPPTEST_SOURCE_DIR}/.coverage"
-        -out "${CPPTEST_SOURCE_DIR}/reports"
+        -out "${CPPTEST_SOURCE_DIR}/reports/html"
     &&
     ${CPPTEST_HOME_DIR}/bin/cpptestcov report text
         -root ${CPPTEST_SOURCE_DIR}
