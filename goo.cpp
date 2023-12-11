@@ -12,6 +12,6 @@ int getValue(int a, int b)
         return b;
     }
 
-    return 0;
+    return 0; // parasoft-cov-suppress "validated - will be removed in the future"
 }
 
