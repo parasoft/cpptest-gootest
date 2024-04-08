@@ -45,7 +45,7 @@ jobs:
 
     # Tests your CMake project.
     - name: Test project
-      run: cd build && rm -rf cpptest-coverage/*/*.clog && ctest || true && make cpptestcov-compute cpptestcov-suppress cpptestcov-report cpptestcov-publish
+      run: cd build && rm -rf cpptest-coverage/*/*.clog && ctest || true && make cpptestcov-compute cpptestcov-suppress cpptestcov-report
 
     - name: Archive reports
       if: always()
@@ -62,7 +62,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v2
       with:
-        path: reports/html
+        path: reports
 
     - name: Deploy to GitHub Pages
       id: deployment

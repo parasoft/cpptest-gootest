@@ -138,39 +138,13 @@ function (cpptest_enable_coverage)
   # - console output
   add_custom_target(cpptestcov-report
     COMMAND
-    date +'build-%m_%d_%y-%H_%M_%S' >
-        "${CPPTEST_BINARY_DIR}/build.id"
-    &&
-    mkdir -p "${CPPTEST_SOURCE_DIR}/reports"
-    &&
-    ${CPPTEST_HOME_DIR}/bin/cpptestcov report dtp-summary
-        -coverage=${CPPTEST_COVERAGE_TYPE_REPORT}
-        -root ${CPPTEST_SOURCE_DIR}
-        -build `cat "${CPPTEST_BINARY_DIR}/build.id"`
-        "${CPPTEST_SOURCE_DIR}/.coverage" >
-        "${CPPTEST_SOURCE_DIR}/reports/dtp-summary.xml"
-    &&
-    ${CPPTEST_HOME_DIR}/bin/cpptestcov report dtp-details
-        -root ${CPPTEST_SOURCE_DIR}
-        -build `cat "${CPPTEST_BINARY_DIR}/build.id"`
-        -scm
-        "${CPPTEST_SOURCE_DIR}/.coverage" >
-        "${CPPTEST_SOURCE_DIR}/reports/dtp-details.xml"
-    &&
-    ${CPPTEST_HOME_DIR}/bin/cpptestcov report dtp-gtest
-        -root ${CPPTEST_SOURCE_DIR}
-        -build `cat "${CPPTEST_BINARY_DIR}/build.id"`
-        -scm
-        "${CPPTEST_BINARY_DIR}/gtest-report/*.xml" >
-        "${CPPTEST_SOURCE_DIR}/reports/dtp-gtest.xml"
-    &&
     ${CPPTEST_HOME_DIR}/bin/cpptestcov report html-multipage
         -scm
         -code
         -root ${CPPTEST_SOURCE_DIR}
         -coverage=${CPPTEST_COVERAGE_TYPE_REPORT}
         "${CPPTEST_SOURCE_DIR}/.coverage"
-        -out "${CPPTEST_SOURCE_DIR}/reports/html"
+        -out "${CPPTEST_SOURCE_DIR}/reports"
     &&
     ${CPPTEST_HOME_DIR}/bin/cpptestcov report text
         -root ${CPPTEST_SOURCE_DIR}
@@ -186,13 +160,6 @@ function (cpptest_enable_coverage)
     COMMAND
     ${CPPTEST_HOME_DIR}/bin/cpptestcov suppress
         "${CPPTEST_SOURCE_DIR}/.coverage"
-  )
-
-  # Publish results to Parasoft DTP
-  add_custom_target(cpptestcov-publish
-    COMMAND
-    ${CPPTEST_HOME_DIR}/bin/cpptestcov publish
-        "${CPPTEST_SOURCE_DIR}/reports/*.xml"
   )
 
 endfunction()
