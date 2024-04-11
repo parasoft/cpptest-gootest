@@ -24,7 +24,7 @@ function (cpptest_enable_coverage)
   endif()
 
   # Configure C/C++test compiler identifier
-  set(CPPTEST_COMPILER_ID "gcc_10-64")
+  set(CPPTEST_COMPILER_ID "gcc_9-64")
   # Configure coverage type(s) for instrumentation engine - see 'cpptestcc -help' for details
   set(CPPTEST_COVERAGE_TYPE_INSTRUMENTATION -line-coverage -statement-coverage -block-coverage -decision-coverage -simple-condition-coverage -mcdc-coverage -function-coverage -call-coverage)
   # Configure coverage type(s) for reporing engine - see 'coverage-compute -help' for details
@@ -36,7 +36,7 @@ function (cpptest_enable_coverage)
   # Configure coverage log file
   set(CPPTEST_COVERAGE_LOG_FILE ${CPPTEST_COVERAGE_WORKSPACE}/${CPPTEST_PROJECT_NAME}.clog)
   # Configure C/C++test installation directory
-  set(CPPTEST_HOME "" CACHE STRING "C/C++test installation directory")
+  set(CPPTEST_HOME "/mnt/c/EW2024/linux/cpptest-ct")
   if(CPPTEST_HOME)
     set(CPPTEST_HOME_DIR ${CPPTEST_HOME})
   else()
