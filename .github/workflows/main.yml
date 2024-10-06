@@ -53,7 +53,7 @@ jobs:
       with:
         name: CpptestReports
         path: |
-          reports/*.*
+          reports/
           .coverage/
 
     - name: Setup Pages
