@@ -138,13 +138,13 @@ function (cpptest_enable_coverage)
   # - console output
   add_custom_target(cpptestcov-report
     COMMAND
-    ${CPPTEST_HOME_DIR}/bin/cpptestcov report html-multipage
+    ${CPPTEST_HOME_DIR}/bin/cpptestcov report html
         -scm
         -code
         -root ${CPPTEST_SOURCE_DIR}
         -coverage=${CPPTEST_COVERAGE_TYPE_REPORT}
         "${CPPTEST_SOURCE_DIR}/.coverage"
-        -out "${CPPTEST_SOURCE_DIR}/reports"
+        -out "${CPPTEST_SOURCE_DIR}/.coverage/index.html"
     &&
     ${CPPTEST_HOME_DIR}/bin/cpptestcov report text
         -root ${CPPTEST_SOURCE_DIR}
