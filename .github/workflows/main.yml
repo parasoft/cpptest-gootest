@@ -33,7 +33,7 @@ jobs:
 
     # Checks out your repository under $GITHUB_WORKSPACE, so that your job can access it.
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     # Configures your CMake project. Be sure the compile_commands.json file is created.
     - name: Configure project
@@ -49,7 +49,7 @@ jobs:
 
     - name: Archive reports
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: CpptestReports
         include-hidden-files: true
